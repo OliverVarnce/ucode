@@ -11,9 +11,7 @@
 #ifndef __LIBMX_H__
 #define __LIBMX_H__
 
-#include <stdio.h>
 #include <string.h>
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -21,6 +19,7 @@
 #include <wchar.h>
 #include <memory.h>
 #include <fcntl.h>
+#include <malloc/malloc.h>
 
 typedef struct s_list {
     void *data;
@@ -76,7 +75,7 @@ bool mx_isspace(char c);
 char *mx_freez(int buf_size, char delim, const int fd);
 void mx_swap_char(char *s1, char *s2);
 char *mx_strchr(const char *s, int c);
-
+size_t mx_minop(size_t s1, size_t s2);
 /*---------------- END String pack --------------*/
 
 /*---------------- Memory pack --------------------*/

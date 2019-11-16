@@ -30,6 +30,7 @@ SRCTMP = ./mx_binary_search.c \
 	./mx_memmem.c \
 	./mx_memmove.c \
 	./mx_memset.c \
+	./mx_minop.c \
 	./mx_nbr_to_hex.c \
 	./mx_pop_back.c \
 	./mx_pop_front.c \
@@ -89,6 +90,7 @@ SRCS = ./src/mx_binary_search.c \
 	./src/mx_memmem.c \
 	./src/mx_memmove.c \
 	./src/mx_memset.c \
+	./src/mx_minop.c \
 	./src/mx_nbr_to_hex.c \
 	./src/mx_pop_back.c \
 	./src/mx_pop_front.c \
@@ -148,6 +150,7 @@ OBJ = ./mx_binary_search.o \
 	./mx_memmem.o \
 	./mx_memmove.o \
 	./mx_memset.o \
+	./mx_minop.o \
 	./mx_nbr_to_hex.o \
 	./mx_pop_back.o \
 	./mx_pop_front.o \
@@ -207,6 +210,7 @@ OBJO = ./obj/mx_binary_search.o \
 	./obj/mx_memmove.o \
 	./obj/mx_memchr.o \
 	./obj/mx_memset.o \
+	./obj/mx_minop.o \
 	./obj/mx_nbr_to_hex.o \
 	./obj/mx_pop_back.o \
 	./obj/mx_pop_front.o \

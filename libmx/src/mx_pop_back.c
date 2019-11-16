@@ -1,12 +1,20 @@
 #include "libmx.h"
 
-void mx_pop_back(t_list **list) {
-	 if (list != NULL) {
-       t_list *tmp = *list;
+void mx_pop_back(t_list **head) {
+	 
+     if (*head == NULL || head == NULL)
+        return;
+     
+     if ((*head)->next == NULL)
+        free(*head);
+        *head = NULL;
+        return;    
+     
+       t_list *tmp = *head;
+
        while (tmp->next->next != NULL)
            tmp = tmp->next;
-       free(tmp->next->data);
+
        free(tmp->next);
        tmp->next = NULL;
-   }
 }

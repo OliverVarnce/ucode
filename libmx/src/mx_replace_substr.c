@@ -2,7 +2,7 @@
 
 char *mx_replace_substr(const char *str, const char *sub, const char *replace) {
 	
-	if (!sub || !replace)
+	if (!sub || !replace || !str)
 		return NULL;
 
 	char *result;
@@ -38,8 +38,3 @@ char *mx_replace_substr(const char *str, const char *sub, const char *replace) {
 	result[i] = '\0';
 	return result;
 }
-
-/*int main(){
-    printf("%s", mx_replace_substr("Ururu turu", "ru", "ta"));
-    return 0;
-}*/

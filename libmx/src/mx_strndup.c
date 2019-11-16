@@ -4,17 +4,15 @@ char *mx_strndup(const char *s1, size_t n){
     if(s1 == NULL)
         return NULL;
 
-    char *res = malloc(mx_strlen(s1) * sizeof(char));
+    char *res = malloc(mx_strlen(s1) * sizeof(char) + 1);
 
-    if (res == NULL)
-        return NULL;
-
-    return mx_strncpy(res, s1, n);
-
+    if (res){
+        res[n] = '\0';
+        while (n-- > 0)
+			res[n] = s1[n];
+    }
+    
+    return res;
 }
 
-/*int main() {
-    const char *str = "fuck U";
-    printf("%s", mx_strndup(str, 3));
-    return 0;
-}*/
+

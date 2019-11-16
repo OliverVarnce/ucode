@@ -2,7 +2,7 @@
 
 char *mx_file_to_str(const char *file){
     int fd = open(file, O_RDONLY);
-	int stlen = 0;
+	int len = 0;
 	int i = 0;
 	char buf;
 	char *retstr;
@@ -15,15 +15,16 @@ char *mx_file_to_str(const char *file){
 	}
 	else {
 		while (read(fd, &buf, 1)) {
-			stlen++;
+			len++;
 		}
 		close(fd);
 		fd = open(file, O_RDONLY);
-		retstr = mx_strnew(stlen);
+		retstr = mx_strnew(len);
 		while (read(fd, &buf, 1)) {
 			retstr[i] = buf;
 			i++;
 		}
+		close(fd);
 		return retstr;
 	}
 }

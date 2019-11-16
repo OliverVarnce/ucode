@@ -14,12 +14,3 @@ int mx_get_substr_index(const char *str, const char *sub) {
 
     return position;
 }
-
-/*
-int main() {
-    char *str = "McDonalds";
-    char *sub = "Don";
-
-    printf("%i", mx_get_substr_index("McDonalds", "Donatello"));
-    return 0;
-}*/

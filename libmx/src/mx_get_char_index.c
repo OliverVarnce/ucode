@@ -16,6 +16,3 @@ int mx_get_char_index(const char *str, char c){
 	return -1;
 }
 
-/*int main(){
-    printf("%i", mx_get_char_index("qwertywewewe", 'e'));
-}*/

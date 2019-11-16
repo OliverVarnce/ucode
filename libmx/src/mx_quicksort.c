@@ -1,35 +1,31 @@
 #include "libmx.h"
 
-int mx_quicksort(char **arr, int left, int right){
-    int i, j, p;
-
-    if(left < right){
-        p = left;
-        i = left;
-        j = right;
-
-        while(i < j){
-            while(arr[i] <= arr[p] && i < right)
-                i++;
-            while(arr[j] > arr[p])
-                j--;
-            if(i < j){
-                mx_swap_char(arr[i], arr[j]);
-            }
+void swap(char **arr, int left, int right, int *swaps) {
+    int l = left, r = right;
+    int mid = l + (r - l) / 2;
+    while (left < r && right > l) {
+        while (mx_strlen(arr[l]) > mx_strlen(arr[mid]))
+            l++;
+        while (mx_strlen(arr[r]) < mx_strlen(arr[mid]))
+            r--;
+        if (l <= r) {
+            char *tmp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = tmp;
+            l++;
+            r--;
+            *swaps = *swaps + 1;
         }
-        mx_swap_char(arr[p], arr[j]);
-      
-        mx_quicksort(arr,left,j-1);
-        mx_quicksort(arr,j+1,right);
-   }
-   return **arr; 
+        if (left < r)
+            swap(arr, left, r, &*swaps);
+        if (l < right)
+            swap(arr, l , right, &*swaps);
+    }
 }
 
-
-/*int main() 
-{ 
-    char *arr[] = {"Michelangelo", "Donatello", "Leonardo", "Raphael"};
-    printf("%d", mx_quicksort(arr, 0, 3)); 
- 
-    return 0; 
-} */
+int mx_quicksort(char **arr, int left, int right) {
+    if (!arr) return -1;
+    int swaps = 0;
+    swap(arr, left, right, &swaps);
+    return swaps;
+}

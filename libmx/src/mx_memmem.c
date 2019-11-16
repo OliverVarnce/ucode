@@ -37,17 +37,3 @@ void *mx_memmem(const void *big, size_t big_len, const void *little, size_t litt
        return NULL;
 }
 
-/*int main()
-{
-    const char str[]= "This is a strstr test";
-    const char search[]= "strstr";
-
-    const char *result = mx_memmem(str, mx_strlen(str), search, mx_strlen(search));
-    const char *result2 = memmem(str, mx_strlen(str), search, mx_strlen(search));
-
-    if ( result )
-       printf("original: %s\n\n item: %s\n found: %s\n", str, search, result);
-
-    if ( result2 )
-       printf("\n\nGcc Lib memmem!\n original: %s\n item: %s\n found: %s\n", str, search, result2);
-}*/

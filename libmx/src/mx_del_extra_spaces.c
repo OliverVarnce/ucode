@@ -1,51 +1,21 @@
 #include "libmx.h"
 
-int mx_strlen(const char *s);
-char *mx_strcpy(char *dst, const char *src);
-
 char *mx_del_extra_spaces(const char *str){
-    int space = 0;
-    int k = 0;
-    int n = strlen(str);
-    char *tmp = malloc(n + 1 * (sizeof(char)));
-    tmp = strcpy(tmp, str);
+    if (!str || str == NULL)
+        return NULL;
 
-    for (int i = 0; i < n; i++) {
-        while (k == 0 && i < n && tmp[i] == ' ') {
-            i++;
-        }
-
-        if (tmp[i] == ' ') {
-            if (!space) {
-                tmp[k++] = str[i];
-                space = 1;
+    char str_len = mx_strlen(str), 
+    *st = mx_strnew(str_len), 
+    *res;
+    if (st)
+        for (int i = 0; *str; st[i++] = *(str++))
+            if (mx_isspace(*str)){
+                for (st[i++] = ' '; mx_isspace(*str); ++str);
+                if (!(*str))
+                    break;
             }
-        }
-        else if (tmp[i] == '.' || tmp[i] == ',' || 
-                 tmp[i] == '?') {
-            if (k > 0 && tmp[k-1] == ' ') {
-                tmp[k-1] = tmp[i];
-            }
-            else {
-                tmp[k++] = tmp[i];
-            }
-            space = 0;
-        }
-        else {
-            tmp[k++] = tmp[i];
-            space = 0;
-        }
-    }
-    tmp[k] = '\0';
-
-    return tmp;
-    free(tmp);
+    res = mx_strtrim(st);
+    free(st);
+    return res;
+   
 }
-
-/*int main(void)
-{
-    char str[] = "  Hello .   This is   C++    program    !!  ";
-    printf("%s\n", mx_del_extra_spaces(str));
-
-    return 0;
-}*/
