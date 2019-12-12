@@ -27,6 +27,32 @@ typedef struct s_list {
     struct s_list *next;
 } t_list;
 
+typedef enum e_error {
+    INVALID_NUM_ARGS,
+    FILE_EXIST,
+    FILE_EMPTY,
+    INVALID_FIRST_LINE,
+    INVALID_LINE,
+    INVLD_NUM_ISLANDS
+} t_error;
+
+typedef struct s_adj_list_node {
+    int dest;
+    struct s_adj_list_node *next;
+} t_adj_list_node;
+
+typedef struct s_adj_list {
+    struct s_adj_list_node *head;
+} t_adj_list;
+
+typedef struct s_graph {
+    int V;
+    struct s_adj_list *array;
+} t_graph;
+
+t_adj_list_node *mx_new_adj_list_node(int dest);
+t_graph *mx_create_graph(int V);
+
 
 /*------ Utils Pack -------*/
 void mx_printchar(char c);
