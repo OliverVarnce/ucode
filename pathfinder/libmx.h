@@ -48,10 +48,8 @@ bool mx_parse_text(char *text);
 void mx_printerrmess(t_error err, const char *comment);
 bool mx_isvalid_line(char *line);
 void mx_printerror(const char *error);
-bool mx_isdigit(char c);
-bool mx_isnum(char c);
-bool mx_isdigit(char c);
 /*---------- END Pathfinder -----------*/
+
 
 /*------ Utils Pack -------*/
 void mx_printchar(char c);
@@ -125,5 +123,8 @@ void mx_pop_back(t_list **head);
 int mx_list_size(t_list *list);
 t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *));
 /*------------ END List pack ---------------*/
+
+void mx_printerrmess(t_error err, const char *comment);
+bool mx_parse_text(char *text);
 
 #endif

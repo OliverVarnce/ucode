@@ -63,7 +63,12 @@ SRCTMP = ./mx_binary_search.c \
 	./mx_strstr.c \
 	./mx_strtrim.c \
 	./mx_strsub.c \
-	./mx_swap_char.c
+	./mx_swap_char.c \
+	./mx_printerrmess.c \
+	./mx_printerror.c \
+	./mx_parse_text.c \
+	./mx_isdigit.c \
+	./mx_isnum.c
 
 SRCS = ./src/mx_binary_search.c \
 	./src/mx_memrchr.c \
@@ -122,7 +127,12 @@ SRCS = ./src/mx_binary_search.c \
 	./src/mx_strstr.c \
 	./src/mx_strtrim.c \
 	./src/mx_strsub.c \
-	./src/mx_swap_char.c
+	./src/mx_swap_char.c \
+	./src/mx_printerrmess.c \
+	./src/mx_printerror.c \
+	./src/mx_parse_text.c \
+	./src/mx_isdigit.c \
+	./src/mx_isnum.c
 
 OBJ = ./mx_binary_search.o \
 	./mx_memrchr.o \
@@ -181,7 +191,12 @@ OBJ = ./mx_binary_search.o \
 	./mx_strstr.o \
 	./mx_strtrim.o \
 	./mx_strsub.o \
-	./mx_swap_char.o
+	./mx_swap_char.o \
+	./mx_printerrmess.o \
+	./mx_printerror.o \
+	./mx_parse_text.o \
+	./mx_isdigit.o \
+	./mx_isnum.o 
 
 OBJO = ./obj/mx_binary_search.o \
 	./obj/mx_memrchr.o \
@@ -240,7 +255,12 @@ OBJO = ./obj/mx_binary_search.o \
 	./obj/mx_strstr.o \
 	./obj/mx_strtrim.o \
 	./obj/mx_strsub.o \
-	./obj/mx_swap_char.o
+	./obj/mx_swap_char.o \
+	./obj/mx_printerrmess.o \
+	./obj/mx_printerror.o \
+	./obj/mx_parse_text.o \
+	./obj/mx_isdigit.o \
+	./obj/mx_isnum.o
 
 
 CFLAGS = -g -std=c11 -Wall -Wextra -Wpedantic -Werror 
