@@ -1,14 +1,11 @@
 #include "libmx.h"
 
-void *mx_memchr(const void *s, int c, size_t n){
-    size_t i;
-
-    for(i = 0; i < n; i++) {
-        if(*((char *)s + i) == c) 
-            return (char*)s + i;
-    }
-            
-    return NULL;
+void *mx_memchr(const void *s, int c, size_t n) {
+    for (size_t i = 0; *((unsigned char *)s) != c && i < n; i++)
+        s = (unsigned char *)s + 1;
+    if (*((unsigned char *)s) == c)
+        return (unsigned char *)s;
+    else return NULL;
 }
 
 /*int main (void)

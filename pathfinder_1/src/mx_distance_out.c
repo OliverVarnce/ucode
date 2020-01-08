@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-void mx_distance_out(t_tool *d, int *path, int i, int j) {
+void mx_distance_out(t_construct *d, int *path, int i, int j) {
     int k = 0;
 
     while(path[k] != -1)

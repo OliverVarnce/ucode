@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-void mx_result_printer(t_tool *d) {
+void mx_result_printer(t_construct *d) {
     int num, **path;
     
     for (int i = 0; i < d->size; i++){

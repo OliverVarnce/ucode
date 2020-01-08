@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-char **mx_file_printer(t_tool *d, int **path, int num) {
+char **mx_file_printer(t_construct *d, int **path, int num) {
     char **nedlee;
     int i = 0;
 

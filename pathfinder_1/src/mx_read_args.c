@@ -2,9 +2,8 @@
 
 char **mx_read_args(char **str, int size) {
     char **result = malloc((size + 1)*sizeof(char*));
+    int line = 0, num = 0;
     result[size] = NULL;
-    int line = 0;
-    int num = 0;
 
     if (size < 2)
         mx_printerrmess(INVALID_NUM_ISLANDS, NULL);

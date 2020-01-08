@@ -8,7 +8,7 @@ switch (err) {
         case FILE_DNT_EXIST:
             mx_printerror("error: file ");
             mx_printerror(comment);
-            mx_printerror(" doesn\'t exist");
+            mx_printerror(" does not exist");
             break;
         case FILE_EMPTY:
             mx_printerror("error: file ");
@@ -16,12 +16,12 @@ switch (err) {
             mx_printerror(" is empty");
             break;
         case INVALID_FIRST_LINE:
-            mx_printerror("error: line 1 isn\'t valid");
+            mx_printerror("error: line 1 is not valid");
             break;
         case INVALID_LINE:
             mx_printerror("error: line ");
             mx_printerror(comment);
-            mx_printerror(" isn't valid");            
+            mx_printerror(" is not valid");            
             break;
         case INVALID_NUM_ISLANDS:
             mx_printerror("error: invalid number of islands");

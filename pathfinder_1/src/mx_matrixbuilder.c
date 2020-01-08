@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-int **mx_matrixbuilder(t_tool *d, int num) {
+int **mx_matrixbuilder(t_construct *d, int num) {
     int **paths = malloc(num * sizeof(int *));
 
     for (int a = 0; a < num; a++) {

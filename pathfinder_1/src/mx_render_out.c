@@ -1,6 +1,6 @@
 #include "libmx.h"
 
-void mx_render_out(t_tool *d, int *path, int i, int j) {
+void mx_render_out(t_construct *d, int *path, int i, int j) {
     mx_printstr("========================");
     mx_printstr("================\nPath: ");
     mx_printstr(d->top[i]);

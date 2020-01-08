@@ -3,8 +3,8 @@
 void mx_finish_isld(char *str, char **result, int *n) {
     int start = mx_get_index_char(str, '-');
     int end = mx_get_index_char(str, ',');
-    char *res = mx_strndup(&str[start + 1], end - start - 1);
     int i = 0;
+    char *res = mx_strndup(&str[start + 1], end - start - 1);
 
     while (i < *n && result[i] != NULL) {
         if (mx_strcmp(result[i], res) == 0) {
@@ -14,7 +14,6 @@ void mx_finish_isld(char *str, char **result, int *n) {
         }
         i++;
     }
-
     if (res != NULL) {
         result[*n] = res;
         (*n)++;

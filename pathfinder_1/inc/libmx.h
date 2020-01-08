@@ -26,13 +26,13 @@ typedef enum e_error {
     INVALID_NUM_ISLANDS
 } t_error;
 
-typedef struct s_tool {
+typedef struct s_construct {
     int size;
     int **matrix;
     int **dist;
     char **top;
     char **file; //file to print
-} t_tool;
+} t_construct;
 
 typedef struct s_adj_list_node {
     int dest;
@@ -67,16 +67,16 @@ int **mx_matrix(char **top, char **str, int size);
 int **mx_create_matrix(int s);
 int mx_get_num_cpl(char *isl);
 int **mx_floyd_alg(int **matrix, int s);
-int **mx_matrixbuilder(t_tool *d, int num);
-/*int next_top(t_tool *data, int from, int to, int paths);
-int previos_top(t_tool *data, int from, int to);*/
-int **mx_general_router(t_tool *d, int num, int from, int to);
-int mx_count_steps(t_tool *d, int a, int b);
+int **mx_matrixbuilder(t_construct *d, int num);
+/*int next_top(t_construct *data, int from, int to, int paths);
+int previos_top(t_construct *data, int from, int to);*/
+int **mx_general_router(t_construct *d, int num, int from, int to);
+int mx_count_steps(t_construct *d, int a, int b);
 char **mx_filereader(char **argv);
-char **mx_file_printer(t_tool *d, int **path, int num);
-void mx_render_out(t_tool *d, int *path, int i, int j);
-void mx_distance_out(t_tool *d, int *path, int i, int j);
-void mx_result_printer(t_tool *d);
+char **mx_file_printer(t_construct *d, int **path, int num);
+void mx_render_out(t_construct *d, int *path, int i, int j);
+void mx_distance_out(t_construct *d, int *path, int i, int j);
+void mx_result_printer(t_construct *d);
 /*---------- END Pathfinder -----------*/
 
 

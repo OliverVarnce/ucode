@@ -5,10 +5,8 @@ int mx_get_index_char(const char *str, char c) {
 
     if (!str) 
         return -2;
-
     while (str[res] != '\0' && str[res] != c)
         res++;
-
     if (str[res] == c)
         return res;
     else 

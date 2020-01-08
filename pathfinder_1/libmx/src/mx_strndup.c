@@ -1,16 +1,11 @@
 #include "libmx.h"
 
-char *mx_strndup(const char *s1, size_t n){
-    if(s1 == NULL)
-        return NULL;
-
-    char *res = malloc(mx_strlen(s1) * sizeof(char));
-
-    if (res == NULL)
-        return NULL;
-
-    return mx_strncpy(res, s1, n);
-
+char *mx_strndup(const char *s1, size_t n) {
+    unsigned long len = mx_strlen(s1);
+    
+    if (len > n)
+        len = n;
+    return mx_strncpy(mx_strnew(len), s1, len);
 }
 
 /*int main() {
