@@ -44,14 +44,13 @@ t_adj_list_node *mx_new_adj_list_node(int dest);
 t_graph *mx_create_graph(int V);
 
 /*------ Pathfinder -------*/
-bool mx_parse_text(char *text);
 void mx_printerrmess(t_error err, const char *comment);
-bool mx_isvalid_line(char *line);
 void mx_printerror(const char *error);
 /*---------- END Pathfinder -----------*/
 
-
 /*------ Utils Pack -------*/
+int mx_atoi(const char *str);
+int mx_arr_size(char **arr);
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);
@@ -93,12 +92,14 @@ char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
 int mx_read_line (char **lineptr, int buf_size, char delim, const int fd);
 char *mx_replace_substr(const char *str, const char *sub, const char *replace);
-
+bool mx_isdigit(char c);
 char *mx_strsub(char const *s, unsigned int start, size_t len);
 bool mx_isspace(char c);
+bool mx_isltr(char c);
 char *mx_freez(int buf_size, char delim, const int fd);
 void mx_swap_char(char *s1, char *s2);
 char *mx_strchr(const char *s, int c);
+bool mx_isalpha(int c);
 
 /*---------------- END String pack --------------*/
 
@@ -123,8 +124,5 @@ void mx_pop_back(t_list **head);
 int mx_list_size(t_list *list);
 t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *));
 /*------------ END List pack ---------------*/
-
-void mx_printerrmess(t_error err, const char *comment);
-bool mx_parse_text(char *text);
 
 #endif
