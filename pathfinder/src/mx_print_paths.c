@@ -68,12 +68,6 @@ void mx_print_result(t_result *lst, t_island *p, int count) {
 	}
 }
 
-void mx_print_ends(){
-    for(int i = 0; i < 40; i++)
-        mx_printchar('=');
-    mx_printchar('\n');
-}
-
 void mx_print_paths(t_result **res, t_island *p, int count) {
     for (int j = 0; j < count - 1; j++) {
         if (res[j]->dist != 0) {

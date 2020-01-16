@@ -20,11 +20,13 @@ SRC		= 	main.c \
             mx_check_file.c \
             mx_check_filling.c \
             mx_errors.c \
+            mx_errors2.c \
             mx_index_raw.c \
             mx_parse_dist.c \
             mx_parse_distance_isl.c \
             mx_parse_islands.c \
             mx_pop_elem_of_list.c \
+            mx_print_ends.c \
             mx_print_paths.c \
             mx_res_list.c \
             mx_sorting.c \

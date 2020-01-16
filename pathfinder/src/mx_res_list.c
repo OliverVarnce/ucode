@@ -44,8 +44,8 @@ void mx_push_back_res(t_result **list, int *way, int count
 	}
 }
 
-void mx_push_front_result(t_result **list, int *way, int count
-	, int *way_dist, int dist) {
+void mx_push_front_result(t_result **list, int *way, int count,
+    int *way_dist, int dist) {
 	t_result *new_head = mx_create_result(way, count, way_dist, dist);
 
 	new_head->next = *list;
