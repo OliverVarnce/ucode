@@ -1,19 +1,23 @@
 #include "libmx.h"
 
-char *mx_strtrim(const char *str){
-    size_t	i = 0;
-	size_t	j;
+char *mx_strtrim(const char *str) {
+	if (str) {
+		int i = 0;
+		int len = mx_strlen(str) - 1;
+		char *new;
+		int size;
 
-	if (!str)
-		return NULL;
-
-	while (mx_isspace(str[i]) && str[i])
-		i++;
-
-	j = mx_strlen(str + i) - 1;
-
-	while (str[i] && mx_isspace(str[j + i]))
-		j--;
-
-	return (mx_strsub(str, i, j + 1));
+		while (mx_is_space(str[i]))
+			i++;
+		while (mx_is_space(str[len]))
+			len--;
+		new = mx_strnew(len - i + 1);
+		size = len - i + 1;
+		for (int j = 0; j < size; j++)
+			new[j] = str[i++];
+		if (new == NULL)
+			return mx_strnew(0);
+		return new;
+	}
+	return NULL;
 }

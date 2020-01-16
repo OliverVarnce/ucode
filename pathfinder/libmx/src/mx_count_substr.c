@@ -1,29 +1,17 @@
 #include "libmx.h"
 
 int mx_count_substr(const char *str, const char *sub) {
-    int count = 0, count1 = 0;
-    int i, j, l1, l2;
+	int i = 0;
 
-    if (str == NULL || sub == NULL)
-        return -1;
-    
-    l1 = mx_strlen(str);
-    l2 = mx_strlen(sub);
-
-    for (i = 0; i < l1;) {
-        j = 0;
-        count = 0;
-        while ((str[i] == sub[j])) {
-            count++;
-            i++;
-            j++;
-        }
-        if (count == l2) {
-            count1++;                                   
-            count = 0;
-        }
-        else
-            i++;
-    } 
-return count1;
+ 	if (!str || !sub)
+ 		return -1;
+ 	if (mx_strlen(str) >= mx_strlen(sub)) {
+    	while (*str) {
+      		if (mx_memcmp(str, sub, mx_strlen(sub)) == 0) {
+        		i++;
+      		}
+      		str++;
+    	}
+  	}
+  	return i;
 }

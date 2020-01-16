@@ -1,24 +1,20 @@
-#include "libmx.h"
+#include "pathfinder.h"
 
 int main(int argc, char **argv) {
-    /*char **arr_islands = NULL;*/
-    char *f_totext = NULL;
-    /*int cnt_islands = 0;
-    int *matrix;*/
-
-    if (argc != 2)
-        mx_printerrmess(INVALID_ARGS, NULL);
-    f_totext = mx_file_to_str(*(argv + 1));
-    mx_parse_text(f_totext);
-    /*arr_islands = mx_parse_text_value(f_totext);
-    matrix = mx_get_matrix(arr_islands, f_totext);
-    cnt_islands = mx_arr_size(arr_islands);
-    t_graph *graph = mx_get_graph_matrix(matrix, cnt_islands);
-    t_list *all_paths = mx_create_node(".");
-    for (int i = 0; i < islands_count; i++) {
-        for (int j = 0; j < islands_count; j++)
-            mx_push_back(&all_paths, mx_get_path_bt_islands(graph, i, j, islands_count));
-    }
-    mx_sort_lists(all_paths);
-    mx_print_shortest_path(all_paths, matrix, cnt_islands, arr_islands);*/
+    t_main *main = (t_main *)malloc(sizeof(t_main));
+    main->argc = argc;
+    main->argv = argv;
+	if (mx_check_file(main)) {
+        t_file *file = malloc(sizeof(t_file));
+		file->file = mx_file_to_str(argv[1]);
+		file->str = mx_strsplit(file->file, '\n');
+        file->count = mx_atoi(file->file);
+        mx_check_fillin(file);
+        t_result **lst = (t_result **)malloc(sizeof(t_result *) * (file->count - 1));
+        t_result **result = (t_result **)malloc(sizeof(t_result *) * (file->count - 1));
+        t_island *isl = (t_island *)malloc(sizeof(t_island) * (file->count));
+        mx_calc_paths(isl, lst, result, file);
+	}
+    //system("leaks -q pathfinder");
+	return 0;
 }

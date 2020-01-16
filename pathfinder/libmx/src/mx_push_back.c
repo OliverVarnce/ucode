@@ -1,11 +1,18 @@
 #include "libmx.h"
 
-void mx_push_back(t_list **list, void *data){
-	t_list *node = mx_create_node(data);
-	t_list *n = *list;
+void mx_push_back(t_list **list, void *data) {
+	if (list) {
+		t_list *new = mx_create_node(data);
 
-	while (node -> next != NULL)
-		n = n -> next;
-		n -> next = node;
+		if (*list) { 
+			t_list *current = *list;
 
+			while(current->next != NULL) {
+				current = current->next;
+			}
+			current->next = new;
+		}
+		else 
+			*list = new;
+	}
 }

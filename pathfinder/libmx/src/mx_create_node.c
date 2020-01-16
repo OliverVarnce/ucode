@@ -1,8 +1,9 @@
 #include "libmx.h"
 
- t_list *mx_create_node(void *data){
- 	struct s_list *last = (struct s_list*)malloc(sizeof(struct s_list));
- 	last->data = data;
- 	last->next = NULL;
- 	return last;
- }
+t_list  *mx_create_node(void *data) {
+	t_list *list = (t_list*)malloc(sizeof(t_list));
+
+	list->data = data;
+	list->next = NULL;
+	return list;
+}

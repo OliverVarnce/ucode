@@ -1,17 +1,15 @@
-#include "libmx.h"
+#include "libmx.h" 
 
-char *mx_strnew(const int size){
-	char *buffer = malloc(sizeof(size) * (size + 1));
+char *mx_strnew(const int size) {
+	char *new;
 
-	if (buffer == NULL) {
-		return 0;
+	if (size < 0)
+		return NULL;
+	new = (char *)malloc(sizeof(char) * (size + 1));
+	if (new == NULL)
+		return NULL;
+	for (int i = 0; i <= size; i++) {
+		new[i] = '\0';
 	}
-		
-	for (int i = 0; i < size; i++){
-		buffer[i] = '\0';
-		
-	}
-	
-	buffer[size] = '\0';
-	return buffer;
+	return new;
 }

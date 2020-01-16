@@ -1,36 +1,63 @@
-NAME = pathfinder
+NAME	=	pathfinder
 
-INC = ./inc/libmx.h
+CFLG	=	-std=c11 -Wall -Wextra -Werror -Wpedantic
+COMP 	= 	clang
 
-HEADTMP = ./libmx.h
+SRCD	=	src
+INCD	=	inc
+OBJD	=	obj
 
-SRC = ./main.c \
+LMXD	=	libmx
+LMXA:=	$(LMXD)/libmx.a
+LMXI:=	$(LMXD)/inc
 
-SRCS = ./src/main.c \
+INC		=	pathfinder.h
+INCS	=	$(addprefix $(INCD)/, $(INC))
 
-OBJ = ./main.o \
+SRC		= 	main.c \
+            mx_algorithm.c \
+            mx_calc_paths.c \
+            mx_check_file.c \
+            mx_check_filling.c \
+            mx_errors.c \
+            mx_index_raw.c \
+            mx_parse_dist.c \
+            mx_parse_distance_isl.c \
+            mx_parse_islands.c \
+            mx_pop_elem_of_list.c \
+            mx_print_paths.c \
+            mx_res_list.c \
+            mx_sorting.c \
+            mx_swap_elem_res.c
 
-OBJO = ./obj/main.o \
-	
-CFLGS = -std=c11 -Wall -Wextra -Wpedantic -Werror 
 
-all: install clean
 
-install:
-	@cd libmx && make -f Makefile install
-	@cp $(INC) $(SRCS) .
-	@clang $(CFLGS) -c  $(SRC)
-	@mkdir  obj
-	@mv $(OBJ) ./obj
-	@clang $(CFLGS) $(OBJO) libmx/libmx.a -o $(NAME)
+SRCS	=	$(addprefix $(SRCD)/, $(SRC))
+OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
 
-uninstall:
-	@cd libmx && make -f Makefile uninstall
-	@rm -rf $(OBJO) $(SRC) $(HEADTMP)
-	@rm -rf ./obj
+all: install
 
+install: $(LMXA) $(NAME)
+
+$(NAME): $(OBJS)
+	@$(COMP) $(CFLG) $(OBJS) -L$(LMXD) -lmx -o $@
+
+$(OBJD)/%.o: $(SRCD)/%.c $(INCS)
+	@$(COMP) $(CFLG) -c $< -o $@ -I$(INCD) -I$(LMXI)
+
+$(OBJS): | $(OBJD)
+
+$(OBJD):
+	@mkdir -p $@
+
+$(LMXA):
+	@make -sC $(LMXD)
 clean:
-	@rm -rf $(OBJO) $(SRCTMP) $(HEADTMP)
-	@rm -rf ./obj
+	@make -sC $(LMXD) $@
+	@rm -rf $(OBJD)
 
-reinstall: clean all
+uninstall: clean
+	@make -sC $(LMXD) $@
+	@rm -rf $(NAME)
+
+reinstall: uninstall install

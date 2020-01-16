@@ -1,25 +1,29 @@
-#include "libmx.h"
+#include "libmx.h" 
+
+static void swap(char **s1, char **s2);
 
 int mx_bubble_sort(char **arr, int size) {
-	char *buff;
-	int swap_cnt = 0;
+	int count = 0;
+	int i = 0;
 
-	for (int i = 0; i < size; i++) {
-		
-		for (int j = 0; j < size - 1; j++) {
-			
-			if (mx_strcmp(arr[j], arr[j + 1]) > 0) {
-				buff = arr[j + 1];
-				arr[j + 1] = arr[j];
-				arr[j] = buff;
-				
-				swap_cnt++;
-
-
+	while (i < size) {
+		if (mx_strcmp(arr[i], arr[i + 1]) > 0) {
+			swap(&arr[i], &arr[i + 1]);		
+			count++;
 		}
+		i++;
+		if (i == size - 1) {
+			i = 0;
+			size--;
+		} 
 	}
-		
+	return count;
+}
 
-	}
-	return swap_cnt;
+static void swap(char **s1, char **s2) {
+	char *tmp;
+
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
 }

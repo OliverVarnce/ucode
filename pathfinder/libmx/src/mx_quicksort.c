@@ -1,35 +1,26 @@
 #include "libmx.h"
 
-int mx_quicksort(char **arr, int left, int right){
-    int i, j, p;
+ int mx_quicksort(char **arr, int left, int right) { 
+ 	int l = left;
+ 	int r = right;
+ 	int m = left + (right - left) / 2;
+ 	int count = 0;
 
-    if(left < right){
-        p = left;
-        i = left;
-        j = right;
+ 	if (!arr || *arr == NULL)
+ 		return -1; 
+ 	while(l <= r) {
+ 		for (; mx_strlen(arr[l]) < mx_strlen(arr[m]); l++);
+ 		for (; mx_strlen(arr[r]) > mx_strlen(arr[m]); r--);
 
-        while(i < j){
-            while(arr[i] <= arr[p] && i < right)
-                i++;
-            while(arr[j] > arr[p])
-                j--;
-            if(i < j){
-                mx_swap_char(arr[i], arr[j]);
-            }
-        }
-        mx_swap_char(arr[p], arr[j]);
-      
-        mx_quicksort(arr,left,j-1);
-        mx_quicksort(arr,j+1,right);
-   }
-   return **arr; 
-}
-
-
-/*int main() 
-{ 
-    char *arr[] = {"Michelangelo", "Donatello", "Leonardo", "Raphael"};
-    printf("%d", mx_quicksort(arr, 0, 3)); 
- 
-    return 0; 
-} */
+ 		if (l <= r) {
+ 			if (mx_strlen(arr[l]) > mx_strlen(arr[r])) {
+ 				mx_swap_elem((void**)&arr[l], (void**)&arr[r]);
+ 				count++;
+ 			}
+ 			l++;
+ 			r--;
+ 		}
+ 	}
+ 	return count += ((l < right) ? mx_quicksort(arr, l, right) : 0)
+ 	+ ((left < r) ? mx_quicksort(arr, left, r) : 0);
+ }

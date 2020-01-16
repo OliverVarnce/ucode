@@ -1,22 +1,9 @@
 #include "libmx.h"
 
-void* mx_memset(void *dest, int c, size_t count) {
-    char* p = (char*)dest;
-   
-    while (count-- > 0) 
-        *p++ = c;
-    
-    return dest;
+void *mx_memset(void *b, int c, size_t len) {
+	unsigned char *ptr = (unsigned char *)b;
+
+	for (size_t i = 0; i < len; i++)
+		ptr[i] = (unsigned char)c;
+	return b;
 }
-
-/*int main() {
-    int a[5]={5,6,7,8,9};
-    int size =5;
-    int d= '3';
-
-    //mx_memset(a,d,size);
-    //printf("%d\n", d);
-    memset(a,d,size);
-    printf("%d\n", d);
-
-}*/

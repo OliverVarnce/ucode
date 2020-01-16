@@ -1,21 +1,11 @@
-#include "libmx.h"
+#include "libmx.h" 
 
-int mx_get_char_index(const char *str, char c){
-    int len = mx_strlen(str);
-	if(str == 0) {
+int mx_get_char_index(const char *str, char c) {
+	if (!str)
 		return -2;
-	}
-
-	for (int i = 0; i < len; i++)
-	{
+	for (int i = 0; str[i]; i++) {
 		if (str[i] == c)
-		{
 			return i;
-		}
 	}
 	return -1;
 }
-
-/*int main(){
-    printf("%i", mx_get_char_index("qwertywewewe", 'e'));
-}*/

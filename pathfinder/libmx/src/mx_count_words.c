@@ -1,38 +1,19 @@
 #include "libmx.h"
 
+int mx_count_words(const char *str, char c) {
+	int in_word = 0;
+	int count = 0;
 
-int mx_count_words(const char *str, char c){
-
-    int k = 0, i = 0, cnt = 0;
-
-    if (str == NULL || !c) 
-        return -1;
-    
-    while (str[i]) {
-        if (str[i] == c && k == 0){
-            i++;   
-        }
-        else if (str[i] != c && k == 0) {
-            k++;
-            cnt++;
-            i++;
-        }
-        else if (str[i] == c && k != 0) {
-            k = 0;
-            i++;
-        }
-        else if (str[i] != c && k != 0) {
-            i++;
-        }
-    }
-    return cnt;
+	if (str) { 
+		for (int i = 0; str[i]; i++) {
+			if (str[i] != c && in_word == 0)
+				in_word = 1;
+			if (str[i] == c  && in_word == 1) {
+				count++;
+				in_word = 0;
+			}
+		}
+		return in_word ? ++count : count;
+	}
+	return -1;
 }
-
-
-/*int main(){
-    char *str = "  follow  *   the  white rabbit ";
-    printf("%d\n\n", mx_count_words(str, '*'));
-    printf("%d\n\n", mx_count_words(str, ' '));
-    printf("%d\n\n", mx_count_words(NULL, ' '));
-    return 0;
-}*/

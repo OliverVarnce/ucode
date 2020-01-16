@@ -1,34 +1,23 @@
 #include "libmx.h"
 
-size_t mx_getsize(void * p) {
-    size_t *in = p;
-    if (in) { 
-        --in;
-        return *in; 
-    }
-    return -1;
-}
-
-
 void *mx_realloc(void *ptr, size_t size) {
-    void *newptr;
-    size_t msize = mx_getsize(ptr);
+	size_t len;
+	void *new_ptr = NULL;
 
-    if (size <= msize)
-        return ptr;
-    newptr = malloc(size);
-    mx_memcpy(newptr, ptr, msize);
-    free(ptr);
-    return newptr;
-}
-
-
-int main() {
-    char *str1 = malloc(15 * sizeof(char));
-    str1 = mx_strcpy(str1, "tutorialspoint");
-    printf("%s\n", str1);
-    str1 = mx_realloc(str1, 4);
-    str1 = mx_strcat(str1, ".com");
-    printf("%s\n", str1);
-    return 0;
+	if (size <= 0 && ptr) {
+		free(ptr);
+		return NULL;
+	}
+	if (!ptr && size)
+		return malloc(size);
+	len = malloc_size(ptr);
+	if (len > size)
+		new_ptr = (void *)malloc(len);
+	else
+		new_ptr = (void *)malloc(size);
+	if (!new_ptr)
+		return NULL;
+	new_ptr = mx_memcpy(new_ptr, ptr, len);
+	free(ptr);
+	return new_ptr;
 }

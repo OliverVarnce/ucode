@@ -1,45 +1,24 @@
 #include "libmx.h"
 
-char *mx_replace_substr(const char *str, const char *sub, const char *replace) {
-	
-	if (!sub || !replace)
-		return NULL;
+char *mx_replace_substr(const char *str, const char *sub
+	, const char *replace) {
+	int len;
+	char *new;
 
-	char *result;
-	int i, count = 0;
-
-	int slen = mx_strlen(sub);
-	if (slen == 0) {
-		return NULL;
-	}
-	int rl = mx_strlen(replace);
-
-	for (i = 0; str[i] !='\0' ; i++) {
-		if (mx_strstr(&str[i], sub) == &str[i]) {
-			count++;
-			i += slen - 1; 
+	if (str && sub && replace && mx_strlen(str) >= mx_strlen(sub)) {
+		len = mx_strlen(str) + mx_count_substr(str, sub)
+		* (mx_strlen(replace) - mx_strlen(sub));
+		new = mx_strnew(len);
+		for (int i = 0; i < len; ) {
+			if (mx_memcmp(str, sub, mx_strlen(sub)) == 0)  {
+				str += mx_strlen(sub);
+				for (int k = 0; k < mx_strlen(replace); k++)
+					new[i++] = replace[k];
+				continue;
+			}
+			new[i++] = *str++;
 		}
+		return new;
 	}
-
-	result = mx_strnew(i + count * (rl - slen) + 1);
-
-    i = 0;
-
-	while(*str) {
-		if(mx_strstr(str, sub) == str) {
-			mx_strcpy(&result[i], replace);
-			i += rl;
-			str += slen;
-		}
-		else {
-			result[i++] = *str++;
-		}
-	}
-	result[i] = '\0';
-	return result;
+	return NULL;
 }
-
-/*int main(){
-    printf("%s", mx_replace_substr("Ururu turu", "ru", "ta"));
-    return 0;
-}*/
